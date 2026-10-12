@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Тестовый интерфейс teleGO</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="workbench">
+      <section class="intro">
+        <div>
+          <p class="kicker">ЛОКАЛЬНЫЙ СИМУЛЯТОР TELEGRAM</p>
+          <h1>Проверьте диалог бота<br /><span>до запуска в Telegram.</span></h1>
+          <p class="intro-copy">Лёгкая оболочка чата для локальной проверки teleGO. Приложение откроется в том же мобильном окне, которое увидят пользователи Telegram.</p>
+        </div>
+        <div class="connection"><i></i><span id="connection-label">готово</span></div>
+      </section>
+
+      <section class="lab">
+        <div class="controls">
+          <label for="app-url">АДРЕС MINI APP</label>
+          <div class="url-row"><input id="app-url" value="http://127.0.0.1:5000" /><button id="open-button">Открыть</button></div>
+          <p>Эмулятор открывает ту же версию teleGO и использует тот же сервер. Локальный профиль сохраняется между открытиями.</p>
+          <div class="quick-actions"><button data-message="Я готов к сегодняшней задаче." class="quick">Отправить сообщение</button><button id="reset-button" class="quick muted">Сбросить чат</button></div>
+        </div>
+
+        <div class="phone-stage">
+          <div class="phone">
+            <header class="telegram-header"><button id="back-button" aria-label="Закрыть приложение">‹</button><div class="bot-avatar">✦</div><div class="bot-title"><strong>teleGO</strong><small id="bot-status">бот</small></div><button class="more" aria-label="Дополнительные действия">•••</button></header>
+            <div class="chat" id="chat">
+              <div class="date-chip">СЕГОДНЯ</div>
+              <div class="bot-bubble">Готовы найти Тэсудзи?</div>
+              <div class="bot-bubble">Решайте задачи или сыграйте с KataGo на доске 9×9, 13×13 или 19×19. Выберите режим внутри teleGO.</div>
+              <div class="time">11:42</div>
+              <button class="launch-card" id="launch-card"><span class="launch-icon">✦</span><span><b>Открыть teleGO</b><small>Задачи · Игра с ИИ</small></span><strong>›</strong></button>
+              <div class="user-bubble hidden" id="user-bubble"></div>
+            </div>
+            <div class="composer"><span>Сообщение</span><button>➤</button></div>
+            <div class="mini-app hidden" id="mini-app"><div class="app-bar"><button id="close-app">⌄</button><span>teleGO</span><span class="app-menu">•••</span></div><iframe id="app-frame" title="Мини-приложение teleGO"></iframe></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

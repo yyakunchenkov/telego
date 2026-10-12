@@ -1,0 +1,37 @@
+{
+  "katago": {
+    "version": "1.18.2",
+    "url": "https://ghcr.io/v2/homebrew/core/katago/blobs/sha256:72e07d097c976c0d57802a81c6dfda3e3ec6d885397d77666b355da5db6ea2eb",
+    "sha256": "72e07d097c976c0d57802a81c6dfda3e3ec6d885397d77666b355da5db6ea2eb"
+  },
+  "protobuf": {
+    "version": "36.2",
+    "url": "https://ghcr.io/v2/homebrew/core/protobuf/blobs/sha256:573d5907842eba3930afbac15f7fbab91df421acc610d9c79278062c1c70c33c",
+    "sha256": "573d5907842eba3930afbac15f7fbab91df421acc610d9c79278062c1c70c33c"
+  },
+  "abseil": {
+    "version": "20260817.0",
+    "url": "https://ghcr.io/v2/homebrew/core/abseil/blobs/sha256:ba58c7ded7fbf67a9bcd508055ad1ebd2b3503bf20e0153a92386cc9459d6568",
+    "sha256": "ba58c7ded7fbf67a9bcd508055ad1ebd2b3503bf20e0153a92386cc9459d6568"
+  },
+  "libzip": {
+    "version": "1.12",
+    "url": "https://ghcr.io/v2/homebrew/core/libzip/blobs/sha256:24a451df5142724086a16439fac719df1b0da9fa0c68a1bfe0133f5db51f05e6",
+    "sha256": "24a451df5142724086a16439fac719df1b0da9fa0c68a1bfe0133f5db51f05e6"
+  },
+  "zstd": {
+    "version": "1.5.7",
+    "url": "https://ghcr.io/v2/homebrew/core/zstd/blobs/sha256:628a4ef53428d0078e3d76d297171ce8d0294f5ec1de3f20305e08c4dd333565",
+    "sha256": "628a4ef53428d0078e3d76d297171ce8d0294f5ec1de3f20305e08c4dd333565"
+  },
+  "xz": {
+    "version": "5.8.4",
+    "url": "https://ghcr.io/v2/homebrew/core/xz/blobs/sha256:d291ad2277682238329b0e4d249e5e2c948c4b10cd64dba1963d897330ad88dd",
+    "sha256": "d291ad2277682238329b0e4d249e5e2c948c4b10cd64dba1963d897330ad88dd"
+  },
+  "lz4": {
+    "version": "1.10.0",
+    "url": "https://ghcr.io/v2/homebrew/core/lz4/blobs/sha256:2be9df952396d89008e56232b065354b3bd51dde5f8a30c1fe18d765ff26e017",
+    "sha256": "2be9df952396d89008e56232b065354b3bd51dde5f8a30c1fe18d765ff26e017"
+  }
+}

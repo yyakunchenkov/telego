@@ -1,0 +1,12 @@
+.venv/
+.DS_Store
+.DSStore
+.vscode/
+__pycache__/
+*.pyc
+*.db
+*.db-shm
+*.db-wal
+engines/katago/downloads/
+engines/katago/packages/
+engines/katago/runtime/

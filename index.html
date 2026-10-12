@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101c2d" />
+    <title>teleGO · Задачи по го</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">✦</span><span>teleGO</span></div>
+        <div class="user-pill" id="user-pill"><span class="online-dot"></span><span id="user-name">гость</span></div>
+      </header>
+
+      <nav class="mode-switch" aria-label="Режим игры">
+        <button id="mode-problems" class="selected" aria-pressed="true">Задачи</button>
+        <button id="mode-ai" aria-pressed="false">Игра с ИИ</button>
+      </nav>
+
+      <section class="problem-card" id="problem-card">
+        <p class="eyebrow board-date"><span id="mode-heading">ЗАДАЧА ДНЯ</span> <span id="daily-date"></span></p>
+        <div class="card-heading">
+          <div><span class="label" id="difficulty">ЗАДАЧА</span></div>
+          <button class="icon-button" id="random-button" aria-label="Случайная задача">↗</button>
+        </div>
+        <div class="solved-badge hidden" id="solved-badge">✓ Задача решена верно</div>
+        <fieldset id="ai-settings" class="ai-settings hidden">
+          <legend>Настройки новой партии</legend>
+          <div class="ai-setting-row">
+            <label>Доска<select id="ai-size"><option value="9">9×9</option><option value="13">13×13</option><option value="19" selected>19×19</option></select></label>
+            <label>Ваши камни<select id="ai-color"><option value="1">Чёрные</option><option value="2">Белые</option></select></label>
+            <label>Коми<select id="ai-komi"><option value="6.5">6,5</option><option value="0.5">0,5</option></select></label>
+          </div>
+          <label class="handicap-option"><input id="ai-handicap" type="checkbox" /><span id="ai-handicap-label">Фора: 9 камней</span></label>
+          <p id="ai-settings-hint">Выберите настройки и нажмите «Новая партия».</p>
+        </fieldset>
+        <p id="ai-status" class="ai-status hidden" role="status" aria-live="polite"></p>
+        <p id="ai-details" class="ai-details hidden"></p>
+        <div class="board-wrap">
+          <div class="board" id="board" aria-label="Интерактивная доска 19 на 19"></div>
+          <div id="territory-legend" class="territory-legend hidden">
+            <span><i class="territory-key territory-black"></i>Территория чёрных</span>
+            <span><i class="territory-key territory-white"></i>Территория белых</span>
+            <small>Оценка KataGo · нейтральные и спорные пункты не окрашены</small>
+          </div>
+          <div class="board-note" id="board-note"><span class="black-dot"></span> Вы играете чёрными <span class="divider"></span> Найдите Тэсудзи</div>
+        </div>
+        <div class="move-notice hidden" id="move-notice" role="status"></div>
+        <button class="secondary-button recovery-button hidden" id="retry-inline">Попробовать ещё раз</button>
+        <div class="game-actions">
+          <button class="secondary-button recovery-button hidden" id="pass-button">Пас</button>
+          <div id="ai-actions" class="ai-actions hidden">
+            <button class="secondary-button recovery-button" id="ai-new">Новая партия</button>
+            <button class="secondary-button recovery-button" id="ai-resign">Сдаться</button>
+          </div>
+        </div>
+        <div class="connection-panel hidden" id="connection-panel" role="status">
+          <p id="connection-error"></p>
+          <button class="secondary-button recovery-button" id="connection-retry">Повторить запрос</button>
+        </div>
+      </section>
+
+      <dialog class="result-modal" id="retry-modal" aria-labelledby="retry-title">
+        <div class="result-modal-card">
+          <button class="modal-close" id="retry-close" aria-label="Закрыть">×</button>
+          <div class="modal-icon">↻</div>
+          <span class="label">ПОПРОБУЙТЕ ЕЩЁ РАЗ</span>
+          <h2 id="retry-title">В этом варианте больше нет правильных ходов</h2>
+          <p>Ничего страшного — вернитесь к начальной позиции и найдите другой путь решения.</p>
+          <button class="primary-button modal-retry" id="retry-button">Попробовать ещё раз <span>→</span></button>
+        </div>
+      </dialog>
+
+      <dialog class="result-modal" id="ai-confirm" aria-labelledby="ai-confirm-title">
+        <div class="result-modal-card">
+          <h2 id="ai-confirm-title">Завершить текущую партию?</h2>
+          <p id="ai-confirm-text"></p>
+          <button class="primary-button modal-retry" id="ai-confirm-yes">Продолжить</button>
+          <button class="secondary-button recovery-button" id="ai-confirm-no">Отмена</button>
+        </div>
+      </dialog>
+
+      <dialog class="result-modal" id="all-complete-modal" aria-labelledby="all-complete-title">
+        <div class="result-modal-card all-complete-card">
+          <button class="modal-close" id="all-complete-close" aria-label="Закрыть">×</button>
+          <div class="modal-icon complete-icon">★</div>
+          <span class="label">teleGO</span>
+          <h2 id="all-complete-title">Поздравляю! Вы решили все задачи</h2>
+          <p>Все задачи из коллекции уже отмечены в вашем профиле.</p>
+        </div>
+      </dialog>
+
+      <section class="progress-section">
+        <div class="section-heading"><div><span class="label">ВАШ ПРОГРЕСС</span><h2>Продолжайте заниматься</h2></div><div class="progress-stats"><strong id="total-score">0</strong> баллов</div></div>
+        <div class="week" id="week"></div>
+      </section>
+
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
